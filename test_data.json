@@ -1,0 +1,32 @@
+[
+    {
+      "battery_voltage": "map[displayName:Battery voltage unit:V value:2.749]",
+      "device_id": 5100,
+      "device_id_1": "dl-pr26_5100",
+      "pressure": "map[displayName:Pressure unit:bar value:0.03070068359375]",
+      "protocol_version": 2,
+      "raw": "AhPsAAND7lbnCr0=",
+      "temperature": "map[displayName:Temperature unit:°C value:18.321875000000006]",
+      "time": "2020-09-28T12:18:09.693060536Z"
+    },
+    {
+      "battery_voltage": "map[displayName:Battery voltage unit:V value:2.749]",
+      "device_id": 5100,
+      "device_id_1": "dl-pr26_5100",
+      "pressure": "map[displayName:Pressure unit:bar value:0.03070068359375]",
+      "protocol_version": 2,
+      "raw": "AhPsAAND7lblCr0=",
+      "temperature": "map[displayName:Temperature unit:°C value:18.315624999999997]",
+      "time": "2020-09-28T12:28:07.922240363Z"
+    },
+    {
+      "battery_voltage": "map[displayName:Battery voltage unit:V value:2.749]",
+      "device_id": 5100,
+      "device_id_1": "dl-pr26_5100",
+      "pressure": "map[value:-0.0008544921875 displayName:Pressure unit:bar]",
+      "protocol_version": 2,
+      "raw": "AhPsAAM/5FabCr0=",
+      "temperature": "map[displayName:Temperature unit:°C value:18.08437500000001]",
+      "time": "2020-09-28T12:58:06.304167319Z"
+    }
+]
