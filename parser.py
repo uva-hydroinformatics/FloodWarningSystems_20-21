@@ -36,6 +36,6 @@ for reading in data:
 
 # end for
 
-# # Test output
-# for item in transformed_data:
-#     print(item)
+# Test output
+for item in transformed_data:
+    print(item)
