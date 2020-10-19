@@ -8,7 +8,7 @@ from requests.exceptions import HTTPError
 # DONE: modularize into functions 
 
 url_base = 'https://ruchir_dl-pr-26_5100.data.thethingsnetwork.org/api/v2/'
-key = ''  # add key
+key = 'ttn-account-v2.cYFVGyYQf-6sbt6WNsoi42RDgD4CCECPF5ElP3Ztrks'  # add key
 headers = {
     'Accept': 'application/json',
     'Authorization': 'key ' + key,
@@ -73,9 +73,9 @@ def get_response(url, params={}):
         response.raise_for_status()
 
         if (response.status_code == 200):
-            response_json = json.loads(response.text)  # list of dicts
+            response_json = response.text  # list of dicts
         
-            print(json.dumps(response_json, indent = 2))  # printing json.loads for nice formatting
+            # print(json.dumps(response_json, indent = 2))  # printing json.loads for nice formatting
             # NOTE: Temperature unit is °C but json.dump converts to ASCII \u00b0C
             return response_json
         else:

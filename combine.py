@@ -1,7 +1,7 @@
-import run.http_get, run.parser
+import http_get, payload_parser
 
-data = run.http_get.get_data()
-transformed_data = run.parser.parse_data(data)
+data = http_get.get_data()
+transformed_data = payload_parser.parse_data(data)
 
 print(data)
 print("done")
