@@ -8,7 +8,7 @@ from requests.exceptions import HTTPError
 # DONE: modularize into functions 
 
 url_base = 'https://ruchir_dl-pr-26_5100.data.thethingsnetwork.org/api/v2/'
-key = 'ttn-account-v2.cYFVGyYQf-6sbt6WNsoi42RDgD4CCECPF5ElP3Ztrks'  # add key
+key = ''  # add key
 headers = {
     'Accept': 'application/json',
     'Authorization': 'key ' + key,
