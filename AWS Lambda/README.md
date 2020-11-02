@@ -27,7 +27,7 @@ On the AWS console, go to Services > Lambda (under Compute). You should now see 
 1. You don't need to do this right now, but to create the library needed, I followed this guide and replaced "pandas" with "requests": https://medium.com/brlink/how-to-create-a-python-layer-in-aws-lambda-287235215b79
 2. On the Lambda dashboard, click "Layers" from the left-hand side
 3. Click "Create layer"
-4. Give the layer a name and description and upload the zip file
+4. Give the layer a name and description and upload the zip file (the one provided is located in ["Lambda Layer/python.zip"](https://github.com/uva-hydroinformatics/FloodWarningSystems_20-21/blob/main/AWS%20Lambda/Lambda%20Layer/python.zip))
 5. Select at least Python 3.8 for runtime and click "Create"
 6. Go back to the Lambda function created earlier
 7. In the "Designer" section, click on "Layers" > "Add a layer"
