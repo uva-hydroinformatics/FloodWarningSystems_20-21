@@ -19,7 +19,7 @@ def parse_data(data):
     data = json.loads(data)
     transformed_data = []
 
-    subfield_pattern = re.compile(r"map\[.*:.*:.*:.*]")
+    subfield_pattern = re.compile(r"map\[(.*:.*)+\]")
     for reading in data:
         transformed_reading = {}
 
