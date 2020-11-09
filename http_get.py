@@ -1,16 +1,17 @@
 import requests
 import json
 from requests.exceptions import HTTPError
+from http_config import *
 
 
 device_urls = {
-    'pressure' : 'https://ruchir_dl-pr-26_5100.data.thethingsnetwork.org/api/v2/',
-    'weather' : 'https://ruchir_dl-atm-41_5245.data.thethingsnetwork.org/api/v2/',
+    'pressure' : pressure_url,
+    'weather' : weather_url,
 }
 
 device_keys = {
-    'pressure'  : '',
-    'weather' :  '',
+    'pressure'  : pressure_key,
+    'weather' :  weather_key,
 }
 
 
