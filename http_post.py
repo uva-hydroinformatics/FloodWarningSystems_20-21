@@ -1,15 +1,16 @@
 import requests
+from config import *
 
 
 device_ids = {
     'pressure': 'dl-pr-26_5100',
-    'weather': ''
+    'weather': 'dl-atm41_5245'
 }
 
-# TODO: Cleanup device urls (ask Abdullah for pressure device url)
+# URLs stored in config.py
 device_urls = {
-    'pressure': '',
-    'weather': ''
+    'pressure': pressure_url,
+    'weather': weather_url
 }
 
 # Command set period + save
