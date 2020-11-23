@@ -1,5 +1,5 @@
 import requests
-from config import *
+from http_config import *
 
 
 device_ids = {
@@ -8,9 +8,9 @@ device_ids = {
 }
 
 # URLs stored in config.py
-device_urls = {
-    'pressure': pressure_url,
-    'weather': weather_url
+downlink_urls = {
+    'pressure': pressure_downlink_url,
+    'weather': weather_downlink_url
 }
 
 # Command set period + save
@@ -29,11 +29,11 @@ sampling_rate = {
 }
 
 # TODO: Change function definition to take in device IDs instead?
-def update_sampling_period(device_url, seconds):
+def update_sampling_period(downlink_url, seconds):
 
     message = '{{"dev_id":"{}","payload_raw":"{}"}}'.format(device_ids['pressure'], sampling_rate[seconds])
 
-    downlink_command = requests.post(device_url, data=message)
+    downlink_command = requests.post(downlink_url, data=message)
 
     print(downlink_command.text)
 
@@ -44,7 +44,7 @@ def update_sampling_period(device_url, seconds):
 # update_sampling_period(device_urls['pressure'], 300)
 
 # 10 minute sampling period
-update_sampling_period(device_urls['pressure'], 600)
+update_sampling_period(downlink_urls['pressure'], 600)
 
 # 15 minute sampling period
 # update_sampling_period(device_urls['pressure'], 900)
