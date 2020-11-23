@@ -1,4 +1,4 @@
-import http_get, payload_parser
+import http_get, payload_parser, update_db
 import json
 
 # see http_get for full documentation 
@@ -27,6 +27,7 @@ will produce UnicodeEncodeError, so wrap in json.dumps(weather_data_2h) first be
 print("Pressure Data")  # NOTE: can print regularly
 print("raw json: ", pressure_data_1h)
 print("transformed: ", transformed_pressure_data)
+update_db.upload_pressure(transformed_pressure_data)
 
 print("\nWeather Data")
 print("raw json: ", json.dumps(weather_data_2h))
