@@ -1,4 +1,4 @@
-# EXAMPLE FILE
+# EXAMPLE FILE 
 # Downlink urls for devices
 
 pressure_url = ''
