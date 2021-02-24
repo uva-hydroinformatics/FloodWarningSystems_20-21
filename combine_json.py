@@ -1,4 +1,4 @@
-from datetime import datetime, date, timedelta
+from datetime import datetime, date, timezone, timedelta
 import json
 from glob import glob
 import os
@@ -10,7 +10,7 @@ strfmt = {'year_month':'%Y-%m', 'day':"%d", 'time': '%H_%M_%S'}
 def convert_to_seconds(s):
     return int(s[:-1]) * seconds_per_unit[s[-1]]
 
-def combine_json(device, last='1h', file=''):
+def combine_json(device, last='1h', start_date=None, end_date=None, file=''):
     """ combine json file readings for specific device 
 
     Parameters
@@ -42,10 +42,15 @@ def combine_json(device, last='1h', file=''):
     readings = []
     reading_jsons = []
 
-    time_now = datetime.now()
+    time_now = datetime.now(timezone.utc)
     # time_now = datetime(year=2021, month=1, day=20, hour=23)
     time_last = time_now - timedelta(seconds=convert_to_seconds(last))
     temp_day = time_now
+
+    if start_date is not None:
+        time_last = datetime.fromisoformat(start_date)
+    if end_date is not None:
+        temp_day = datetime.fromisoformat(end_date)
 
     # starts with most recent reading and works backwards to find last reading
     while(next):
@@ -75,7 +80,7 @@ def combine_json(device, last='1h', file=''):
 
     if file != '':
         with open(file, 'w') as f:
-            json.dump(readings, f, indent=4)       
+            json.dump(readings, f, indent=4)
     return readings
 
 if __name__ == "__main__":
