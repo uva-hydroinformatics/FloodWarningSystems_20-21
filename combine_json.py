@@ -10,7 +10,7 @@ strfmt = {'year_month':'%Y-%m', 'day':"%d", 'time': '%H_%M_%S'}
 def convert_to_seconds(s):
     return int(s[:-1]) * seconds_per_unit[s[-1]]
 
-def combine_json(device, last='1h', start_date=None, end_date=None, file=''):
+def combine_json(device, last='1h', start_date=None, end_date=None, file=None):
     """ combine json file readings for specific device 
 
     Parameters
@@ -78,7 +78,7 @@ def combine_json(device, last='1h', start_date=None, end_date=None, file=''):
     
     # print(json.dumps(readings, indent=4))
 
-    if file != '':
+    if file is not None:
         with open(file, 'w') as f:
             json.dump(readings, f, indent=4)
     return readings

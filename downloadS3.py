@@ -70,7 +70,7 @@ def download_from_S3(device, last=None, start_date=None, end_date=None):
     print('Finished downloading selected readings!')
 
 
-def combined_readings(device, last='1d', start_date=None, end_date=None, file=''):
+def combined_readings(device, last='1d', start_date=None, end_date=None, file=None):
     download_from_S3(device, last=last, start_date=start_date, end_date=end_date)
     return combine_json(device, last=last, start_date=start_date, end_date=end_date, file=file)
 
