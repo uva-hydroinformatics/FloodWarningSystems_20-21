@@ -24,7 +24,6 @@ def get_object_prefixes(device, last=None, start_date=None, end_date=None):
     datetime_end_date = datetime.fromisoformat(end_date)
     
     # Create queue for parallel S3 downloads for each day's readings
-    # TODO: Run multiple Lambda's in parallel to download and retrieve readings, maybe up to 100 at a time? idk
     object_prefix = 'SensorData/{}/'.format(device)
     object_prefix_queue = Queue()
 
@@ -49,24 +48,37 @@ def combined_readings(object_list):
     while not object_list.empty():
 
         reading_object_prefix = object_list.get()
-        # print('Downloading readings from \'{}\' directory...'.format(reading_object_prefix))
 
         for s3_object in s3_bucket.objects.filter(Prefix=reading_object_prefix):
             
             file_content = s3_object.get()['Body'].read().decode('utf-8')
             json_content = json.loads(file_content)
             readings.append(json_content)
-
-    with open('test_data_file.json', 'w') as f:
-        json.dump(readings, f, indent=4)
-        f.write("\n")
     
-    return readings
+    readings_json = json.dumps(readings, indent=4)
+
+    return readings_json
 
 
 def get_combined_readings(device, last='1d', start_date=None, end_date=None):
     object_prefix_queue = get_object_prefixes(device, last=last, start_date=start_date, end_date=end_date)
-    return combined_readings(object_prefix_queue)
+    device_readings = combined_readings(object_prefix_queue)
+    return device_readings
 
 ##### TEST CASES
-# get_combined_readings('dl-pr-26_5100', start_date='2021-02-14', end_date='2021-02-14')
+# device1 = 'dl-pr-26_5100'
+# device_readings = get_combined_readings(device1, start_date='2021-02-14', end_date='2021-02-14')
+
+### For local testing purposes, uncomment to print out to a local file
+# file_name = 'test_data_{}.json'.format(device1)
+# with open(file_name, 'w') as f:
+#     json.dump(device_readings, '', indent=4)
+#     f.write("\n")
+
+# device_readings = get_combined_readings(device1, start_date='2021-02-14', end_date='2021-02-14')
+# test = json.dumps(device_readings, indent=4)
+# print(test)
+
+### For testing API Query Strings
+# device=dl-pr-26_5100&start_date=2021-03-01&end_date=2021-03-01 <- ~8-9 seconds to run
+# device=dl-atm41_5245&start_date=2021-03-01&end_date=2021-03-01 <- ~8-9 seconds to run
