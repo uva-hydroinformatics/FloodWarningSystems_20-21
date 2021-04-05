@@ -1,6 +1,3 @@
-# Abdullah Mahmood, aam2vp
-# Flood Warning Systems 20-21
-
 import json, re
 
 
@@ -16,6 +13,9 @@ def parse_data(data):
     -------
     returns dictionary of transformed records (can change to return JSON in future with dump/s)
     """
+    if data == None:
+        return None
+
     data = json.loads(data)
     transformed_data = []
 
