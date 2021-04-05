@@ -5,17 +5,17 @@ from http_config import *
 
 
 device_urls = {
-    'pressure' : pressure_url,
-    'ultrasonic1' : ultrasonic1_url,
-    'ultrasonic2' : ultrasonic2_url,
-    'weather' : weather_url,
+    'dl-pr-26_5100' : pressure_url,
+    'dl-mbx_5248' : ultrasonic1_url,
+    'dl-mbx_5249' : ultrasonic2_url,
+    'dl-atm41_5245' : weather_url,
 }
 
 device_keys = {
-    'pressure'  : pressure_key,
-    'ultrasonic1' : ultrasonic1_key,
-    'ultrasonic2' : ultrasonic2_key,
-    'weather' :  weather_key,
+    'dl-pr-26_5100'  : pressure_key,
+    'dl-mbx_5248' : ultrasonic1_key,
+    'dl-mbx_5249' : ultrasonic2_key,
+    'dl-atm41_5245' :  weather_key,
 }
 
 
