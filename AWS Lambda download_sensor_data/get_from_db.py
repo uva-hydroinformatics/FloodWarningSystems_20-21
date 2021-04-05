@@ -8,7 +8,7 @@ from sshtunnel import SSHTunnelForwarder
 SSH_host = rds_config.floodDBcluster_endpoint
 SSH_user = rds_config.SSH_user
 SSH_password = rds_config.SSH_password
-SSH_private_key = ''  # add private key
+SSH_private_key = rds_config.SSH_private_key
 
 # Config for Flood DB Cluster
 db_host = rds_config.floodDBcluster_endpoint
@@ -23,6 +23,7 @@ def format_variable(var):
     return "_".join([str(x) for x in var_part])
 
 # TODO: make 'last' parameter work for hour and week i.e '2h' or '3w'
+# Now returns payload as JSON (previously was JSON formatted string)
 def db_read(device, last='1d', start_date=None, end_date=None):
 
     # Convert start_date into type datetime
@@ -58,7 +59,7 @@ def db_read(device, last='1d', start_date=None, end_date=None):
 
         try:
             with connection.cursor() as cursor:
-                sql = "SELECT * FROM `flood`.Values WHERE serial_ID='{}' AND datetime between '{}' and '{}'".format(device, str(datetime_start_date), str(datetime_end_date))
+                sql = "SELECT * FROM `{}`.Values WHERE serial_ID='{}' AND datetime between '{}' and '{}'".format(db_name, device, str(datetime_start_date), str(datetime_end_date))
                 cursor.execute(sql)
                 result = cursor.fetchall()
                 
@@ -82,7 +83,7 @@ def db_read(device, last='1d', start_date=None, end_date=None):
        
  
                 payload = json.loads(dfx.to_json(orient='records', date_format='iso'))
-                return json.dumps(payload, indent=4)
+                return payload
                 
 
         except Exception as e:
@@ -90,7 +91,3 @@ def db_read(device, last='1d', start_date=None, end_date=None):
 
         finally:
             connection.close()
-        
-
-
-# print(db_read('dl-mbx_5248', start_date='2020-12-01', end_date='2021-02-01'))
