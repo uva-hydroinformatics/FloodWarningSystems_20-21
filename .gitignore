@@ -3,3 +3,5 @@ rds_config.py
 http_config.py
 __pycache__/
 SensorData/
+.vscode/
+Local Testing/
